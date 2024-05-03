@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.android.blogapp"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.android.blogapp"
@@ -67,14 +67,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    
 
-// The default implementations
-    implementation("androidx.navigation:navigation-fragment:2.2.1")
-    implementation ("androidx.navigation:navigation-ui:2.2.1")
 
-// The Kotlin ones
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.2.1")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.2.1")
+    val nav_version = "2.7.7"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 
 }
