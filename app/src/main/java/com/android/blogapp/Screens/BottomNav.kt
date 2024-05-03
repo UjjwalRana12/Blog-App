@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.BottomAppBar
@@ -52,6 +53,10 @@ fun BottomNav(navController: NavHostController) {
             composable(route = Routes.AddThread.routes) {
                 AddThreads()
             }
+
+            composable(route = Routes.Notification.routes) {
+                Notification()
+            }
         }
 
     }
@@ -68,6 +73,7 @@ fun BottomNavBar(navController1: NavHostController) {
         BottomNavItem("search", Routes.Search.routes, Icons.Rounded.Search),
         BottomNavItem("addThreads", Routes.AddThread.routes, Icons.Rounded.Add),
         BottomNavItem("profile", Routes.Profile.routes, Icons.Rounded.Person),
+        BottomNavItem("Notification", Routes.Notification.routes, Icons.Rounded.Notifications),
     )
 
     BottomAppBar {

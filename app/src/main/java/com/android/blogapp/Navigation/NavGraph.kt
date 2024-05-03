@@ -6,7 +6,9 @@ import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.android.blogapp.Screens.AddThreads
+import com.android.blogapp.Screens.BottomNav
 import com.android.blogapp.Screens.Home
 import com.android.blogapp.Screens.Notification
 import com.android.blogapp.Screens.Profile
@@ -23,7 +25,7 @@ fun NavGraph(navController: NavHostController){
         }
 
         composable(route= Routes.Splash.routes){
-            SplashScreen()
+            SplashScreen(navController)
         }
 
         composable(route= Routes.Profile.routes){
@@ -40,6 +42,11 @@ fun NavGraph(navController: NavHostController){
 
         composable(route= Routes.AddThread.routes){
             AddThreads()
+        }
+
+        composable(route = Routes.BottomNav.routes) {
+
+            BottomNav(navController)
         }
 
 

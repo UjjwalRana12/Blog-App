@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -72,5 +73,18 @@ dependencies {
     val nav_version = "2.7.7"
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+
+
+
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
+    implementation("com.google.firebase:firebase-database")
+
+
 
 }

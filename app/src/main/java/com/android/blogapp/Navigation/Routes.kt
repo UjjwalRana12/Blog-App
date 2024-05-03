@@ -8,4 +8,5 @@ sealed class Routes(val routes:String){
     object Profile : Routes("profile")
     object Search : Routes("search")
     object AddThread : Routes("add_thread")
+    object BottomNav : Routes("bottom_nav")
 }
