@@ -23,20 +23,28 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.android.blogapp.Navigation.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun Register() {
+fun Register(navController: NavHostController) {
 
     var email by remember {
         mutableStateOf("")
     }
+
     var name by remember {
         mutableStateOf("")
     }
 
-    var confirmPass by remember {
+    var userName by remember {
+        mutableStateOf("")
+    }
+
+    var bio by remember {
         mutableStateOf("")
     }
 
@@ -45,8 +53,7 @@ fun Register() {
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -57,66 +64,115 @@ fun Register() {
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
 
-                ),singleLine = true
+                ),
+            singleLine = true
         )
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(25.dp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(25.dp)
+        )
+
+        OutlinedTextField(
+            value = userName,
+            onValueChange = { userName = it },
+            label = { Text(text = "userName") },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+
+                ),
+            singleLine = true
+        )
+
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(25.dp)
+        )
+
+        OutlinedTextField(
+            value = bio,
+            onValueChange = { bio = it },
+            label = { Text(text = "bio") },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+
+                ),
+            singleLine = true
+        )
+
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(25.dp)
+        )
 
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
             label = { Text(text = "email") },
             keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password,
+                keyboardType = KeyboardType.Email,
 
-                ),singleLine = true
+                ),
+            singleLine = true
         )
-
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(25.dp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(25.dp)
+        )
 
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text(text = "password") },
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Email,
-
-                ),singleLine = true
-        )
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(25.dp))
-
-        OutlinedTextField(
-            value = confirmPass,
-            onValueChange = { confirmPass = it },
-            label = { Text(text = "Confirm Password") },
+            label = { Text(text = "Password") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
 
-                ),singleLine = true
+                ),
+            singleLine = true
         )
 
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(25.dp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(25.dp)
+        )
 
-        ElevatedButton(onClick = { /*TODO*/ }, modifier = Modifier
+        ElevatedButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 52.dp, end = 52.dp)
+        ) {
+
+            Text(
+                text = "Register Here", style = TextStyle(
+                    color = Color.Black
+                )
+            )
+        }
+
+        TextButton(onClick = { navController.navigate(Routes.Login.routes){
+            popUpTo(navController.graph.startDestinationId)
+            launchSingleTop = true
+        }
+
+
+
+                             }, modifier = Modifier
             .fillMaxWidth()
             .padding(start = 52.dp, end = 52.dp)) {
+            Text(text = "already have an account? login")
 
-            Text(text = "Login",style= TextStyle(
-                color = Color.Black
-            ))
         }
     }
 }
 
 @Preview
 @Composable
-fun register(){
-    Register()
+fun register() {
+    val navController = rememberNavController()
+    Register(navController)
 }

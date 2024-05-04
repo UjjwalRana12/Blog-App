@@ -23,11 +23,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.android.blogapp.Navigation.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun Login() {
+fun Login(navController: NavHostController) {
 
     var email by remember {
         mutableStateOf("")
@@ -80,7 +83,10 @@ fun Login() {
             
         }
 
-        TextButton(onClick = { /*TODO*/ }, modifier = Modifier
+        TextButton(onClick = { navController.navigate(Routes.Register.routes){
+            popUpTo(navController.graph.startDestinationId)
+            launchSingleTop = true
+        } }, modifier = Modifier
             .fillMaxWidth()
             .padding(start = 52.dp, end = 52.dp)) {
             Text(text = "New user? Create Account")
@@ -94,5 +100,6 @@ fun Login() {
 @Preview
 @Composable
 fun Lofin(){
-    Login()
+    var navController = rememberNavController()
+    Login(navController)
 }
